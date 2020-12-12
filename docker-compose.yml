@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  boxfusebuilder:
+    build: ./builder
+    volumes:
+      - boxfusevol:/data/boxfuse-sample-java-war-hello/target
+          
+  boxfuseprod:
+    build: ./prod
+    ports:
+      - "8888:8080"
+    volumes:
+      - boxfusevol:/usr/local/tomcat/webapps  
+volumes:
+  boxfusevol:
