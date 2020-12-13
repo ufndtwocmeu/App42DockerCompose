@@ -20,7 +20,6 @@ RUN cd /data/App42PaaS-Java-MySQL-Sample && \
 
 FROM tomcat:6 AS prod
 COPY --from=builder /data/App42PaaS-Java-MySQL-Sample/target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
-#ADD Config.properties /usr/local/tomcat/ROOT/
-ADD Config.properties /usr/local/tomcat/webapps/
+COPY --from=builder /data/App42PaaS-Java-MySQL-Sample/WebContent/* /usr/local/tomcat/ROOT/
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
