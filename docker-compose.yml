@@ -10,7 +10,7 @@ services:
       MYSQL_USER: user1
       MYSQL_PASSWORD: user1_password
     volumes:
-      — mydatabase:/var/lib/mysql
+      - mydatabase:/var/lib/mysql
 
   app:
     build: .
