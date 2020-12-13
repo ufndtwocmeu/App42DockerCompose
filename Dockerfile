@@ -1,7 +1,7 @@
 FROM ubuntu:12.04 AS builder
 
 RUN apt-get -qq update && \
-    #apt-get -qq -y install openjdk-6-jdk && \
+    apt-get -qq -y install openjdk-6-jdk && \
     apt-get -qq -y install maven2 && \
     apt-get -qq -y install git && \
     mkdir /data && \
@@ -20,6 +20,7 @@ RUN cd /data/App42PaaS-Java-MySQL-Sample && \
 
 FROM tomcat:6 AS prod
 COPY --from=builder /data/App42PaaS-Java-MySQL-Sample/target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
-ADD Config.properties /usr/local/tomcat/ROOT/
+#ADD Config.properties /usr/local/tomcat/ROOT/
+ADD Config.properties /usr/local/tomcat/webapps/
 EXPOSE 8080
 CMD ["catalina.sh", "run"]

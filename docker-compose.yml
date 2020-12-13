@@ -3,7 +3,7 @@ services:
 
   db:
     image: mysql:5
-    container_name: db
+    container_name: mysqldb
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: mydb
@@ -14,7 +14,7 @@ services:
 
   app:
     build: .
-    container_name: ufndtwocmeu_app42
+    container_name: app42
     ports:
       - "8888:8080"
 
