@@ -1,15 +1,22 @@
 version: "3.8"
 services:
-  boxfusebuilder:
-    build: ./builder
+
+  db:
+    image: mysql:5.1.8
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: user1_password
     volumes:
-      - boxfusevol:/data/boxfuse-sample-java-war-hello/target
-          
-  boxfuseprod:
-    build: ./prod
+      — mydatabase:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: ufndtwocmeu_app42
     ports:
       - "8888:8080"
-    volumes:
-      - boxfusevol:/usr/local/tomcat/webapps  
+
 volumes:
-  boxfusevol:
+  mydatabase:
